@@ -7,14 +7,18 @@ const productService = new ProductDaosMongo
 //GET
 router.get('/' , async (req , res) => {
     try{
-        const { limit = 9, page = 1, sort, query } = req.query
+        const { limit = 9 , page = 1 , sort , category , available } = req.query
 
         const limitInt = isNaN(parseInt(limit)) ? 9 : parseInt(limit)
         const pageInt = isNaN(parseInt(page)) ? 1 : parseInt(page)
 
         let filter = {}
-        if(query){
-            filter = { category: query }
+        if(category){
+            filter.category = category
+        }
+
+        if(available){
+            filter.stock = { $gt: 0 }
         }
 
         let sortObj = {}

@@ -41,8 +41,8 @@ router.get('/' , async (req , res) => {
             hasNextPage: pageInt < totalPages,
             prevPage: pageInt > 1 ? pageInt - 1 : null,
             nextPage: pageInt < totalPages ? pageInt + 1 : null,
-            prevLink: pageInt > 1 ? `/api/products/?limit=${limitInt}&page=${pageInt - 1}${sort ? `&sort=${sort}` : ''}${query ? `&query=${query}` : ''}` : null,
-            nextLink: pageInt < totalPages ? `/api/products/?limit=${limitInt}&page=${pageInt + 1}${sort ? `&sort=${sort}` : ''}${query ? `&query=${query}` : ''}` : null
+            prevLink: pageInt > 1 ? `/api/products/?limit=${limitInt}&page=${pageInt - 1}${sort ? `&sort=${sort}` : ''}${category ? `&category=${category}` : ``}${available ? `&available=${available}` : ''}` : null,
+            nextLink: pageInt < totalPages ? `/api/products/?limit=${limitInt}&page=${pageInt + 1}${sort ? `&sort=${sort}` : ''}${category ? `&category=${category}` : ``}${available ? `&available=${available}` : ''}` : null
         }
 
         res.status(200).send(response)
